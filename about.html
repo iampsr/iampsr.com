@@ -1,11 +1,180 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>About — iampsr</title>
-<style>body{font-family:system-ui;padding:28px;max-width:780px;margin:auto}</style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About • PSR</title>
+
+<style>
+  :root{
+    --bg:#0b0b0b; --card: rgba(255,255,255,0.05);
+    --text:#fff; --muted:rgba(255,255,255,0.75);
+    --glass-border: rgba(255,255,255,0.12);
+    --accent:#ff6b00;
+  }
+  :root.light{
+    --bg:#fafafa; --card: rgba(0,0,0,0.05);
+    --text:#000; --muted:rgba(0,0,0,0.7);
+    --glass-border: rgba(0,0,0,0.1);
+  }
+
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue";
+    background:var(--bg);
+    color:var(--text);
+    padding:20px;
+  }
+
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:30px;
+    background:var(--card);
+    border:1px solid var(--glass-border);
+    border-radius:16px;
+    backdrop-filter:blur(14px);
+    margin-top:40px;
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:20px;
+  }
+  .logo{
+    width:70px;height:70px;border-radius:12px;overflow:hidden;
+    background:var(--card);border:1px solid var(--glass-border);
+  }
+  .logo img{
+    width:100%;height:100%;object-fit:cover;
+  }
+
+  h1{
+    margin:0;
+    font-size:34px;
+    font-weight:800;
+  }
+  p{
+    line-height:1.65;
+    font-size:18px;
+    color:var(--muted);
+  }
+
+  footer{
+    text-align:center;
+    margin-top:40px;
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  a{
+    color:var(--accent);
+    text-decoration:none;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:10px;
+    background:linear-gradient(180deg,var(--accent),#ff8c32);
+    color:#111;
+    font-weight:700;
+    margin-top:20px;
+  }
+
+  #themeBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:transparent;
+    border:1px solid var(--glass-border);
+    padding:10px 14px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:15px;
+    color:var(--muted);
+    backdrop-filter:blur(12px);
+  }
+</style>
 </head>
+
 <body>
-  <h1>About</h1>
-  <p>Replace this with your full bio, skills, and what visitors should take away. Link to videos, rides, services, collaboration notes.</p>
-  <p><a href="/">← Home</a></p>
+
+<button id="themeBtn">🌗 Theme</button>
+
+<div class="wrap">
+
+  <header>
+    <div class="logo">
+      <img src="/mnt/data/Screenshot 2025-11-26 at 2.53.24 AM.png" alt="PSR logo">
+    </div>
+    <h1>About Me</h1>
+  </header>
+
+  <p>
+    Hi, I’m <strong>Prem (PSR)</strong> — a full-time corporate professional and a full-time motorcycle enthusiast at heart.
+  </p>
+
+  <p>
+    When I’m not at work, I’m usually somewhere on the road, chasing mountain curves, discovering hidden routes, or documenting my rides for my YouTube family on <strong>PSR Rides</strong>.
+  </p>
+
+  <p>
+    Riding isn’t just a hobby for me — it’s therapy, freedom, and a way to connect with new places, people, and stories.
+  </p>
+
+  <p>
+    I’m also the <strong>co-founder of RevSync</strong>, a platform built for riders by riders. We’re creating tools and experiences that make motorcycling easier, safer, and more fun — from ride planning to community rides and premium reviews.
+  </p>
+
+  <p>
+    My goal with this website is simple: to share my journey, rides, gear, and everything I learn on the road — honestly and unfiltered.
+  </p>
+
+  <p>
+    Whether it’s a detailed explanation, long ride, travel story, or an honest gear review, I hope something here inspires you to get out and ride too.
+  </p>
+
+  <a class="btn" href="/">← Back to Home</a>
+
+</div>
+
+<footer>
+  © <script>document.write(new Date().getFullYear())</script> PSR — Prem Singh
+</footer>
+
+<script>
+  /* THEME TOGGLE WITH AUTO MODE */
+  const root = document.documentElement;
+  const stored = localStorage.getItem('psr-theme') || 'auto';
+
+  function applyTheme(mode){
+    if(mode === 'light') root.classList.add('light');
+    else if(mode === 'dark') root.classList.remove('light');
+    else {
+      if(window.matchMedia('(prefers-color-scheme: light)').matches)
+        root.classList.add('light');
+      else root.classList.remove('light');
+    }
+  }
+
+  applyTheme(stored);
+
+  function nextMode(curr){
+    return curr === 'auto' ? 'light' : curr === 'light' ? 'dark' : 'auto';
+  }
+
+  document.getElementById('themeBtn').onclick = () => {
+    const curr = localStorage.getItem('psr-theme') || 'auto';
+    const next = nextMode(curr);
+    localStorage.setItem('psr-theme', next);
+    applyTheme(next);
+    document.getElementById('themeBtn').innerText =
+      next === 'auto' ? '🌗 Auto' : next === 'light' ? '🌞 Light' : '🌙 Dark';
+  };
+</script>
+
 </body>
 </html>
