@@ -1,87 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Prem Singh | PSR Rides</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSR • Prem Singh Rides</title>
 
 <style>
-    body {
-        margin: 0;
-        background: #111;
-        font-family: Arial, sans-serif;
-        color: #fff;
-    }
+/* ---------- BASE ---------- */
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+}
 
-    /* HERO */
-    .hero {
-        background: url('hero.jpg') center/cover no-repeat;
-        padding: 120px 20px;
-        text-align: center;
-    }
-    .hero h1 {
-        font-size: 42px;
-        margin: 0;
-        font-weight: 700;
-    }
-    .hero p {
-        font-size: 20px;
-        opacity: 0.8;
-    }
+/* ---------- HERO ---------- */
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('hero.jpg') center/cover no-repeat;
+    position: relative;
+}
 
-    /* SECTION */
-    section {
-        padding: 40px 20px;
-        max-width: 1100px;
-        margin: auto;
-    }
-    h2 {
-        font-size: 32px;
-        margin-bottom: 20px;
-        border-left: 5px solid #ff7b00;
-        padding-left: 12px;
-    }
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
 
-    /* CARD GRID */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 20px;
-    }
+.hero-content {
+    position: relative;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.05);
+    padding: 30px 50px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
 
-    .card {
-        background: #1a1a1a;
-        border-radius: 12px;
-        overflow: hidden;
-        transition: transform 0.3s;
-        border: 1px solid #222;
-    }
-    .card:hover {
-        transform: scale(1.03);
-    }
+.hero-content h1 {
+    font-size: 48px;
+    margin: 0;
+    font-weight: 800;
+}
+.hero-content p {
+    opacity: 0.8;
+    margin-top: 10px;
+    font-size: 18px;
+}
 
-    .card img {
-        width: 100%;
-        height: 170px;
-        object-fit: cover;
-    }
-    .card h3 {
-        font-size: 20px;
-        margin: 10px;
-    }
-    .card p {
-        font-size: 15px;
-        margin: 10px;
-        opacity: 0.8;
-    }
+/* ---------- SECTION ---------- */
+section {
+    padding: 50px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    border-left: 5px solid #ff6b00;
+    padding-left: 12px;
+}
 
-    /* FOOTER */
-    footer {
-        text-align: center;
-        padding: 20px;
-        opacity: 0.6;
-        font-size: 14px;
-    }
+/* ---------- GLASS GRID ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 22px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(14px);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: scale(1.03);
+}
+.card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+.card h3 {
+    margin: 12px;
+}
+.card p {
+    margin: 12px;
+    opacity: 0.8;
+}
+
+/* ---------- TIMELINE ---------- */
+.timeline {
+    border-left: 3px solid #ff6b00;
+    margin-left: 20px;
+    padding-left: 22px;
+}
+
+.event {
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.event::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background: #ff6b00;
+    border-radius: 50%;
+    position: absolute;
+    left: -32px;
+    top: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.4; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.event h3 { margin: 0; font-size: 22px; }
+.event p { opacity: 0.75; }
+
+/* ---------- YOUTUBE EMBED ---------- */
+.video-box {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px);
+}
+.video-box iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    text-align: center;
+    opacity: 0.6;
+    padding: 20px;
+    margin-top: 50px;
+}
 </style>
 </head>
 
@@ -89,69 +160,79 @@
 
 <!-- HERO -->
 <div class="hero">
-    <h1>PSR • Prem Singh Rides</h1>
-    <p>Motorcycle adventures • Honest gear • Real experiences</p>
+    <div class="hero-content">
+        <h1>PSR • Prem Singh Rides</h1>
+        <p>Real rides. Honest gear. Mountain stories.</p>
+    </div>
 </div>
 
-<!-- BIKE SECTION -->
+<!-- YOUTUBE SECTION -->
+<section>
+    <h2>Latest Video</h2>
+    <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+</section>
+
+<!-- BIKE -->
 <section>
     <h2>My Bike</h2>
     <div class="grid">
         <div class="card">
-            <img src="bike.jpg" alt="My Bike">
+            <img src="bike.jpg">
             <h3>Pulsar NS200</h3>
-            <p>My main motorcycle for all hill rides, North Sikkim, Gangtok, and long-distance touring.</p>
+            <p>My main motorcycle for hill climbs, long rides, and vlogging.</p>
         </div>
     </div>
 </section>
 
-<!-- RIDES SECTION -->
+<!-- RIDES -->
 <section>
     <h2>My Rides</h2>
-    <div class="grid">
+    <div class="timeline">
 
-        <div class="card">
-            <img src="ride1.jpg" alt="Ride">
+        <div class="event">
             <h3>Lachung → Gangtok</h3>
-            <p>Hidden route, off-road patches, and a surprise paradise spot.</p>
+            <p>Hidden route, off-road sections, surprise paradise spot.</p>
         </div>
 
-        <div class="card">
-            <img src="ride2.jpg" alt="Ride">
+        <div class="event">
             <h3>Hyderabad → Goa</h3>
-            <p>Coastal views, night stretches, and scenic winding roads.</p>
+            <p>Coastal, hills, night ride, scenic twisties.</p>
         </div>
 
-        <div class="card">
-            <img src="ride3.jpg" alt="Ride">
-            <h3>Hyderabad → Kolkata</h3>
-            <p>Non-stop 1-day challenge ride with full highway focus.</p>
+        <div class="event">
+            <h3>Hyderabad → Kolkata (1 day)</h3>
+            <p>Endurance ride. 1000+ km. Pure focus.</p>
         </div>
 
     </div>
 </section>
 
-<!-- PRODUCTS SECTION -->
+<!-- PRODUCTS -->
 <section>
     <h2>Products I Use</h2>
     <div class="grid">
 
         <div class="card">
-            <img src="helmet.jpg" alt="Gear">
-            <h3>Helmet</h3>
-            <p>KYT Striker / KYT TT Course — my everyday and touring helmets.</p>
+            <img src="helmet.jpg">
+            <h3>KYT Striker</h3>
+            <p>My primary touring helmet.</p>
         </div>
 
         <div class="card">
-            <img src="gopro.jpg" alt="Gear">
-            <h3>Action Camera</h3>
-            <p>GoPro Hero 7 & Hero 12 — for vlogging, wide FOV, and stable footage.</p>
+            <img src="gopro.jpg">
+            <h3>GoPro Hero 12</h3>
+            <p>Main camera for cinematic vlogs.</p>
         </div>
 
         <div class="card">
-            <img src="gloves.jpg" alt="Gear">
+            <img src="gloves.jpg">
             <h3>Riding Gloves</h3>
-            <p>Full gauntlet and street gloves depending on the ride.</p>
+            <p>Full gauntlet for Sikkim & long rides.</p>
         </div>
 
     </div>
