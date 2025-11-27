@@ -17,26 +17,48 @@
       color-scheme: dark;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
     }
+
+    /* Light mode variables (toggled with .light-mode on <html>) */
+    html.light-mode{
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --accent: #ff6a00;
+      --muted: #4b5563;
+      --glass: rgba(2,6,23,0.04);
+      color-scheme: light;
+    }
+
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071021);color:#e6eef6}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071021);color:var(--text,#e6eef6)}
+    /* ensure readable text color in light mode */
+    html.light-mode, html.light-mode body { --text:#071022; }
+
     a{color:var(--accent);text-decoration:none}
     .container{max-width:1150px;margin:0 auto;padding:28px}
 
     /* HEADER */
-    header.main-header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    header.main-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ff9500);display:flex;align-items:center;justify-content:center;font-weight:700;color:#021;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ff9500);display:flex;align-items:center;justify-content:center;font-weight:700;color:#021;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
     .site-title{font-size:18px;font-weight:700;letter-spacing:0.2px}
     nav.desktop{display:flex;gap:12px;align-items:center}
     nav.desktop a{padding:8px 12px;border-radius:10px;font-weight:600}
     nav.desktop a:hover{background:var(--glass)}
 
-    /* Mobile nav */
+    /* Theme toggle + mobile */
+    .controls{display:flex;gap:8px;align-items:center}
+    .icon-btn{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px;border-radius:10px;cursor:pointer}
     .mobile-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:10px}
     @media (max-width:820px){
       nav.desktop{display:none}
       .mobile-toggle{display:inline-flex}
     }
+
+    /* mobile nav overlay */
+    .mobile-nav-panel{position:fixed;inset:0;background:linear-gradient(180deg,rgba(2,6,23,0.9),rgba(2,6,23,0.96));backdrop-filter:blur(6px);display:none;z-index:60;padding:28px}
+    .mobile-nav-panel.open{display:block}
+    .mobile-nav-panel nav{display:flex;flex-direction:column;gap:12px}
+    .mobile-nav-panel a{font-size:18px;padding:12px;border-radius:10px}
 
     /* HERO */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;margin:28px 0}
@@ -65,10 +87,15 @@
     /* responsive */
     @media (max-width:1150px){.hero{grid-template-columns:1fr 360px}}
     @media (max-width:920px){.grid{grid-template-columns:repeat(2,1fr)}.shop-grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}}
-    @media (max-width:560px){.grid{grid-template-columns:1fr}.shop-grid{grid-template-columns:1fr}.container{padding:18px}}
-
-    /* smooth anchor */
-    html{scroll-behavior:smooth}
+    @media (max-width:560px){
+      .grid{grid-template-columns:1fr}.shop-grid{grid-template-columns:1fr}.container{padding:18px}
+      .hero{gap:14px}
+      .hero-card{padding:18px}
+      .hero h1{font-size:26px}
+      .cta{flex-direction:column}
+      .btn{width:100%;padding:12px}
+      .logo{width:44px;height:44px}
+    }
 
     /* small helpers */
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700}
@@ -82,6 +109,11 @@
 
     /* accessible focus */
     a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(255,106,0,0.16);outline-offset:3px}
+
+    /* details summary small animation */
+    details summary{cursor:pointer}
+    details[open] > *{animation:fadeIn 240ms ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
   </style>
 </head>
 <body>
@@ -103,8 +135,37 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      <div class="controls">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌓</button>
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      </div>
     </header>
+
+    <!-- mobile nav overlay -->
+    <div id="mobileNav" class="mobile-nav-panel" aria-hidden="true">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <div style="display:flex;gap:12px;align-items:center"><div class="logo">PSR</div><div style="font-weight:700">iamPSR</div></div>
+        <div><button id="mobileClose" class="icon-btn" aria-label="Close menu">Close</button></div>
+      </div>
+      <nav>
+        <a href="#rides">PSR Rides</a>
+        <a href="#explains">PSR Explains</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div style="margin-top:18px">
+        <h4 style="margin:6px 0">Subscribe</h4>
+        <p class="muted">Join the mailing list for ride alerts and gear drops.</p>
+        <form action="#" onsubmit="alert('Replace form action with your provider');return false;" style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+          <input type="email" placeholder="you@domain.com" required style="padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit">
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" type="submit">Subscribe</button>
+            <div class="small">Or email <a href="mailto:hello@iampsr.com">hello@iampsr.com</a></div>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- mobile nav panel -->
     <div id="mobileNav" style="display:none;margin-top:12px">
@@ -359,21 +420,46 @@
   </div>
 
   <script>
-    // small interactive bits
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    mobileToggle.addEventListener('click', ()=>{
-      const open = mobileNav.style.display === 'block';
-      mobileNav.style.display = open ? 'none' : 'block';
-      mobileToggle.setAttribute('aria-expanded', String(!open));
-    });
+    // theme handling (persisted)
+    (function(){
+      const themeToggle = document.getElementById('themeToggle');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem('iampsr:theme');
+      function applyTheme(t){
+        if(t === 'light') document.documentElement.classList.add('light-mode');
+        else document.documentElement.classList.remove('light-mode');
+        themeToggle.textContent = (t === 'light') ? '🌞' : '🌙';
+      }
+      let theme = saved || (prefersDark ? 'dark' : 'light');
+      applyTheme(theme);
+      themeToggle.addEventListener('click', ()=>{
+        theme = (document.documentElement.classList.contains('light-mode')) ? 'dark' : 'light';
+        localStorage.setItem('iampsr:theme', theme);
+        applyTheme(theme);
+      });
+    })();
+
+    // mobile nav handling
+    (function(){
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      const mobileClose = document.getElementById('mobileClose');
+      function openNav(){ mobileNav.classList.add('open'); mobileNav.setAttribute('aria-hidden','false'); mobileToggle.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+      function closeNav(){ mobileNav.classList.remove('open'); mobileNav.setAttribute('aria-hidden','true'); mobileToggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+      mobileToggle.addEventListener('click', ()=>{ mobileNav.classList.contains('open') ? closeNav() : openNav(); });
+      mobileClose.addEventListener('click', closeNav);
+      // close on navigation
+      mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
+    })();
 
     // lightweight smooth image loading
     document.querySelectorAll('img').forEach(img=>{img.loading='lazy'});
 
-    // Accessibility: close mobile nav on link click
-    mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{mobileNav.style.display='none';mobileToggle.setAttribute('aria-expanded','false')}));
+    // Accessibility: focus trap not implemented (kept simple) but close on Escape
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ const mobileNav = document.getElementById('mobileNav'); if(mobileNav.classList.contains('open')){ mobileNav.classList.remove('open'); mobileNav.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }}});
+
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
