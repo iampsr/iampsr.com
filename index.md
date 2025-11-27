@@ -8,48 +8,6 @@
   <link rel="icon" href="/favicon.ico">
   <style>
     :root{
-  --accent: #FF6A00;
-  --bg: #071122;
-  --card: #0b1420;
-  --muted: #9aa4b2;
-  --glass: rgba(255,255,255,0.04);
-  --radius: 12px;
-  --text: #e6eef6;
-  --kit: #18a058;
-  --max-width: 1150px;
-}
-
-html.light-mode{
-  --bg: #f6f7fb;
-  --card: #ffffff;
-  --muted: #4b5563;
-  --text: #071022;
-  --glass: rgba(2,6,23,0.04);
-}
-
-body{
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(180deg,var(--bg), #071122);
-  color: var(--text);
-  margin:0;
-  -webkit-font-smoothing:antialiased;
-}
-
-/* Hero image style for rides & explainers */
-.hero-visual{ width:100%; border-radius:12px; aspect-ratio:16/9; object-fit:cover; display:block; }
-
-/* Glass quick facts (use in ride detail and explainers) */
-.glass-quickfacts{
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  backdrop-filter: blur(6px);
-  border-radius: 12px;
-  padding: 12px;
-  border: 1px solid rgba(255,255,255,0.04);
-}
-
-/* Experiment kit badge */
-.badge-kit{ background: rgba(24,160,88,0.12); color: var(--kit); padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.9rem; }
-    :root{
       --bg:#0f1724; /* deep slate */
       --card:#0b1220;
       --accent:#ff6a00; /* warm orange */
@@ -268,27 +226,49 @@ body{
 
     <!-- PSR RIDES -->
     <section id="rides">
-      <h2>PSR Rides</h2>
-      <p class="muted">Long ride reports with route notes, permits, fuel stops, and photography tips.</p>
+      <h2>PSR Rides — Routes, Reviews & Ridecraft</h2>
+      <p class="muted">In-depth ride reports, long & short routes, bike reviews, route planning, permits and real-world tips — everything a rider needs to plan and improve rides.</p>
 
-      <div class="grid" style="margin-top:12px">
+      <!-- Featured ride (full width) -->
+      <article class="card" style="margin-top:12px;display:block;">
+        <img src="https://via.placeholder.com/1400x700?text=Featured+Ride+-+Leh+Ladakh" alt="Featured Leh Ladakh ride" class="hero-visual">
+        <div style="display:flex;gap:14px;align-items:flex-start;margin-top:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <h3 style="margin:6px 0">Leh ↔️ Ladakh — Complete Rider's Guide</h3>
+            <p class="muted">A comprehensive guide combining long-ride strategy, permit notes, fuel planning, altitude tips and photo spots — written from multiple rides on the route.</p>
+            <div style="display:flex;gap:8px;margin-top:10px"><a class="btn" href="#">Read Full Report</a><a class="btn ghost" href="#contact">Ask about this ride</a></div>
+          </div>
+
+          <div style="width:320px" class="glass-quickfacts">
+            <h4 style="margin:4px 0">Quick Facts</h4>
+            <ul class="muted" style="padding-left:16px;margin:8px 0;line-height:1.5">
+              <li>Distance: ~1,200 km round trip</li>
+              <li>Best time: Jun–Sep</li>
+              <li>Permits: Inner Line Permit — local guesthouses help (avoid agents)</li>
+              <li>Fuel: Carry a reserve for remote stretches</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ride cards grid (emphasised) -->
+      <div class="grid" style="margin-top:14px;grid-template-columns:repeat(3,1fr);">
         <article class="card">
-          <img src="https://via.placeholder.com/800x480?text=Leh+Ride" alt="Leh Ride" style="width:100%;border-radius:8px;object-fit:cover;aspect-ratio:16/9">
-          <h3>Leh ↔️ Ladakh — Full comparison</h3>
-          <p class="muted">A deep-dive comparing Leh rides versus Lachen/Lachung/Gurudongmar. What to expect from terrain, permits, and pace.</p>
-          <div style="display:flex;gap:8px;margin-top:8px"><a class="btn" href="#">Read</a><a class="btn ghost" href="#contact">Ask a question</a></div>
+          <img src="https://via.placeholder.com/800x480?text=Hill+Loop" alt="Hill Loop" style="width:100%;border-radius:8px;object-fit:cover;aspect-ratio:16/9">
+          <h3>Lachen &amp; Lachung — Mountain Essentials</h3>
+          <p class="muted">Short practical notes on acclimatisation, key passes and where to stop for the best views.</p>
         </article>
 
         <article class="card">
           <img src="https://via.placeholder.com/800x480?text=Coastal+Ride" alt="Coastal Ride" style="width:100%;border-radius:8px;object-fit:cover;aspect-ratio:16/9">
-          <h3>Hyderabad → Kolkata day planning</h3>
-          <p class="muted">How to plan long distance point-to-point rides efficiently and safely.</p>
+          <h3>Hyderabad → Kolkata — Planning a Multi-day Point-to-Point</h3>
+          <p class="muted">How to split days, plan fuel stops, and manage fatigue on long transfers.</p>
         </article>
 
         <article class="card">
-          <img src="https://via.placeholder.com/800x480?text=Hill+Loop" alt="Hill Loop" style="width:100%;border-radius:8px;object-fit:cover;aspect-ratio:16/9">
-          <h3>Lachen & Lachung: the terrain you should know</h3>
-          <p class="muted">A practical guide to mountain passes, acclimatisation and photography spots.</p>
+          <img src="https://via.placeholder.com/800x480?text=Short+Weekend" alt="Weekend Ride" style="width:100%;border-radius:8px;object-fit:cover;aspect-ratio:16/9">
+          <h3>Weekend Loops — Quick Ride Ideas</h3>
+          <p class="muted">A collection of short loop rides ideal for testing bike setup and camera positions.</p>
         </article>
       </div>
     </section>
@@ -314,23 +294,20 @@ body{
       </div>
     </section>
     <section id="explains">
-      <h2>PSR Explains</h2>
-      <p class="muted">Curiosity-led deep dives: science, the universe, and how things work — translated for riders and makers. Expect clear experiments, visual breakdowns, and practical takeaways that connect physics and engineering to real-world riding.</p>
+      <h2>PSR Explains — Curiosity & How Things Work</h2>
+      <p class="muted">Short, curiosity-led explainers connecting science and everyday ridecraft. Clear visuals, a short experiment, and practical takeaways — designed to be concise and easy to read.</p>
 
-      <div class="grid" style="margin-top:12px">
+      <div class="grid" style="margin-top:12px;grid-template-columns:repeat(2,1fr);gap:14px">
         <article class="card">
-          <h3>How to choose crash protection</h3>
-          <p class="muted">Key points to consider when picking frame sliders, guards and sliders for urban & offroad.</p>
+          <h3>How Gyroscopic Forces Help Stability</h3>
+          <p class="muted">A short breakdown of gyroscopic precession and why tyres and speed affect balance — includes a small at-home demo you can try.</p>
+          <div style="margin-top:8px"><a class="btn" href="#">Read</a></div>
         </article>
 
         <article class="card">
-          <h3>Helmet tech explained</h3>
-          <p class="muted">From shell materials to noise reduction and camera mounts.</p>
-        </article>
-
-        <article class="card">
-          <h3>Camera rigs for motorsport vlogging</h3>
-          <p class="muted">Mounts, battery management, and footage settings that work while riding.</p>
+          <h3>Helmet Aerodynamics — Noise & Comfort</h3>
+          <p class="muted">Quick notes on shell shapes, ventilation and how small design changes reduce buffeting on long rides.</p>
+          <div style="margin-top:8px"><a class="btn" href="#">Read</a></div>
         </article>
       </div>
     </section>
