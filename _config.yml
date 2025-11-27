@@ -1,9 +1,1 @@
-# _config.yml
-theme: jekyll-theme-cayman
-title: "iampsr"
-description: "iampsr — motorcycle rides, gear, and videos"
-baseurl: ""
-url: "https://iampsr.com"
 
-plugins:
-  - jekyll-feed
