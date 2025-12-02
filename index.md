@@ -168,12 +168,12 @@
         <div class="grid">
           <!-- Story card 1 -->
           <article class="card">
-            <div class="thumb" style="background-image:url('https://github.com/iampsr/iampsr/blob/iampsr-patch-1-Images/IMG_8251.jpg?raw=true')" role="img" aria-label="mountain road"></div>
+            <div class="thumb" style="background-image:url('https://github.com/iampsr/iampsr/blob/iampsr-patch-1-Images/IMG_8251.jpg')" role="img" aria-label="mountain road"></div>
             <div class="card-body">
               <div class="kicker">Long Ride</div>
               <h3>Himalayan Dawn — Lachen to Gurudongmar</h3>
               <p class="excerpt">A quiet morning climb, a frozen lake, and one very cold breakfast stop. Lessons from a high-altitude ride.</p>
-              <div class="meta"><a href="https://github.com/iampsr/iampsr/blob/bc8493e9e999909904df23b550a3fd729995f6de/LachentoGurudongmar">Read story</a><span class="muted">• 8 min read</span></div>
+              <div class="meta"><a href="https://github.com/iampsr/LachentoGurudongmar.html">Read story</a><span class="muted">• 8 min read</span></div>
             </div>
           </article>
 
