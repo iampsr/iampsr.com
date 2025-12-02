@@ -40,7 +40,7 @@ footer{margin:28px 0;text-align:center;color:var(--muted)}
 <section>
 <h2>PSR Rides (Preview)</h2>
 <div class="grid">
-<div class="card"><img src="https://via.placeholder.com/800x480?text=Leh+Ride" alt="Leh Ride"><h3>Leh ↔ Ladakh — Full guide</h3><p style="color:var(--muted)">Long-form route plan + permits & fuel notes.</p></div>
+<div class="card"><img src="https://github.com/iampsr/iampsr/blob/main/IMG_8654%202.jpg?raw=true" alt="Leh Ride"><h3>Leh ↔ Ladakh — Full guide</h3><p style="color:var(--muted)">Long-form route plan + permits & fuel notes.</p></div>
 <div class="card"><img src="https://via.placeholder.com/800x480?text=Coastal+Ride" alt="Coastal Ride"><h3>Hyderabad → Kolkata planning</h3><p style="color:var(--muted)">How to do long transfers safely.</p></div>
 <div class="card"><img src="https://via.placeholder.com/800x480?text=Weekend+Loop" alt="Weekend Loop"><h3>Weekend Loops</h3><p style="color:var(--muted)">Short ride ideas to test setup.</p></div>
 </div>
